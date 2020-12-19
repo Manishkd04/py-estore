@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% load custom_filter %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+            <h3>Search Result for <span class="text-info">"{{request.GET.keyword}}"</span></h3>
+            <hr>
+            {% for result in results %}
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{result.image.url}}" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-8">
+                    <h4>{{result.name}}</h4>
+                    <p>{{result.description|truncatewords:30}}</p>
+                    <h4 class="bold">Price: {{result.price|currency}}</h4>
+                </div>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
